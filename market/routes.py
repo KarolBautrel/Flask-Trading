@@ -6,8 +6,8 @@ from market.forms import RegisterForm, LoginForm, PurchaseItemForm, SellingItemF
 
 google = oauth.register(
     name='google',
-    client_id="378796742278-5r3jjcc9m0hdvh8864l4on1lt49kcgc1.apps.googleusercontent.com",
-    client_secret="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",
+    client_id="xxxx",
+    client_secret="xxxx",
     access_token_url='https://accounts.google.com/o/oauth2/token',
     access_token_params=None,
     authorize_url='https://accounts.google.com/o/oauth2/auth',
@@ -41,7 +41,7 @@ def market_page():
       
                 
     if request.method == 'GET':
-        items = Item.query.filter_by(owner=None) # wyswietlenie wszystkich obiektow w naszej bazie danych
+        items = Item.query.filter_by(owner=None) 
         
         return render_template('market.html', items=items, purchase_form=purchase_form)
 
