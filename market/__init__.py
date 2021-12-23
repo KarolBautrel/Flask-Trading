@@ -10,8 +10,8 @@ app.config['SECRET_KEY'] = 'secretkey'
 db = SQLAlchemy(app)
 bcrypt = Bcrypt(app)
 login_manager = LoginManager(app)
-login_manager.login_view= 'login_page' # skierowanie usera na strone login_page
-login_manager.login_message_category = 'info' # kategoria wiadomosci info
+login_manager.login_view= 'login_page' 
+login_manager.login_message_category = 'info' 
 oauth = OAuth(app)
 
 from market import routes
