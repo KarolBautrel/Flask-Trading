@@ -1,11 +1,9 @@
 from flask_wtf import FlaskForm
-# zaimportowanie specjalnych bibliotek odpowiadajacych za rodzaj wprowadzanych danych 
-from wtforms import StringField, PasswordField, SubmitField  # Fields for user inputs
-# Klasa length sluzy do wyznaczania dlugosci, EqualTo sprawdza czy wartosci sa takie same, Email sprawdza czy ktos podal wlasciwy email
-# DataRequired sprawia, ze pole musi byc wypelnione
+from wtforms import StringField, PasswordField, SubmitField  
+
 from wtforms.validators import Length, EqualTo , Email, DataRequired, ValidationError
 from market.models import User
-# jesli uzywamy wiecej warunkow, nalezy wpisac je w liscie ([warunek,warunek])
+
 
 
 class RegisterForm(FlaskForm):
@@ -17,10 +15,9 @@ class RegisterForm(FlaskForm):
 
 
     def validate_username(self,username_to_check):
-            #Zapisujemy w zmiennej usera, ktory jest taki sam jak username to check
+           
         user = User.query.filter_by(username = username_to_check.data).first()
-        if user: # jesli user istnieje to oznacza, ze ktos juz ma taka nazwe
-            # bo zostanie zwrocona nam wartosc
+        if user: 
             raise ValidationError ('Username already exists')
 
     def validate_email(self,email_to_check):
