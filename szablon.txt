@@ -1,0 +1,1 @@
+item1 = Item(name="Laptop", barcode = "123123", price = 500, description = "This is phone", picture = " https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Nokia_3310_Blue_R7309170_%28retouch%29.png/150px-Nokia_3310_Blue_R7309170_%28retouch%29.png")

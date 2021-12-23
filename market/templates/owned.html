@@ -1,0 +1,21 @@
+{%extends "base.html"%}
+
+{%block content%}
+
+
+{%for item in owned_items%}
+{% include 'includes/selling_modals.html' %}
+<div class="container">    
+    <div class="row">
+      <div class="col">
+        <div class="panel panel-primary">
+          <div class="panel-heading">{{item.name}}  <button class='btn btn-outline btn-red' data-toggle='modal' data-target='#Modal-SellConfirm-{{item.id}}'>Sell!</button> </div>
+          <div class="panel-body">{{item.price}}</div>
+          <div class="panel-footer">{{item.description}} </div>
+          
+        </div>
+      </div>
+  </div><br><br>
+  {%endfor%}
+  {%endblock%}
+  

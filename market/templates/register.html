@@ -1,0 +1,48 @@
+{%extends "base.html"%}
+
+{%block title%}
+
+
+Register Page
+
+
+{%endblock%}
+
+{% block content %}
+<body class="text-center"> <!--Wysrodkowanie calego tekstu-->
+    <div class="container">
+    <form method ="POST" class="form-register" style = "color:rgb(54, 53, 53)">
+        {{form.hidden_tag()}}
+
+        <h1 class="h3 mb-3 font-weight - normal">Please Create your Account</h1>
+        <br>
+    
+        {{form.username.label() }} <!--Wyswietlenie label, z instancji form-->
+        {{form.username(class="form-control", placeholder="Username") }}<!--pole do wypelnienia, form-control to bootstral-->
+        
+        {{form.email.label() }} <!--Wyswietlenie label, z instancji form-->
+        {{form.email(class="form-control", placeholder="Email") }}
+        
+        {{form.password.label() }} 
+        {{form.password(class="form-control", placeholder="Password") }}
+        
+        {{form.password2.label() }} 
+        {{form.password2(class="form-control", placeholder="Confirm Password") }}
+        <br>
+
+
+        <div class = "checkbox mb-3" style = "color:rgb(54, 53, 53)">
+            <h6>Do you already have account ? </h6>
+            <a class = "btn btn-sm btn-primary" href="{{url_for('login_page')}}">Login</a>
+        </div>
+        <br>
+
+        {{form.submit(class="btn btn-lg btn-block btn-primary")}}<!--Przycisk-->
+    </form>
+    </div>
+</body>
+
+{% endblock %}
+
+
+

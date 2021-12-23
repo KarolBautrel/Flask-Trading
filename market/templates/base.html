@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>
+    {%block title%}
+
+    {%endblock%}
+
+
+  </title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <style>
+    /* Remove the navbar's default rounded borders and increase the bottom margin */ 
+    .navbar {
+      margin-bottom: 50px;
+      border-radius: 0;
+    }
+    
+    /* Remove the jumbotron's default bottom margin */ 
+     .jumbotron {
+      margin-bottom: 0;
+    }
+   
+    /* Add a gray background color and some padding to the footer */
+    footer {
+      background-color: #f2f2f2;
+      padding: 25px;
+    }
+  </style>
+</head>
+<body>
+
+
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" href="#">Logo</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+     
+      <ul class="nav navbar-nav">
+        <li><a class = 'nav-link' href="{{url_for('home_page')}}"><span class ="glyphicon glyphicon-home"></span> Home</a></li>
+        <li><a class = 'nav-link' href="{{url_for('market_page')}}"><span class ="glyphicon glyphicon-shopping-cart"></span>Products</a></li>
+        <li><a class = 'nav-link' href="{{url_for('owned_page')}}">Your Items</a></li> 
+      
+        {%if current_user.is_authenticated %}
+        <ul class="nav navbar-nav navbar-right">
+          <li><a class = 'nav-link' ></span> Hello, {{current_user.username}}</a></li>
+          <li><a class = 'nav-link'><span class="glyphicon glyphicon-eur"></span> {{current_user.budget}}</a></li>
+          <li><a class = 'nav-link' href="{{url_for('logout_page')}}"><span class="glyphicon glyphicon-remove"></span> Logout</a></li>
+          <li><a class = 'nav-link' href="#"><span class="glyphicon glyphicon-user"></span> Your Panel Button</a></li>
+        </ul>
+      </div>
+  </nav>
+    </ul>
+      {%else%}
+
+     
+      <ul class="nav navbar-nav navbar-right">
+        <li><a class = 'nav-link' href="{{url_for('login_gmail')}}"><span class="glyphicon glyphicon-envelope"></span> Login with Google Account</a></li>
+        <li><a class = 'nav-link' href="{{url_for('login_page')}}"><span class="glyphicon glyphicon-user"></span> Login</a></li>
+        <li><a class = 'nav-link' href="{{url_for('register_page')}}"><span class="glyphicon glyphicon-user"></span> Register</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+    {%endif%}
+
+
+    
+{%with messages = get_flashed_messages(with_categories = true)%}
+        {% if messages %}  <!-- jesli wiadomosc nie jest nullem-->
+            {%for category, message in messages%}
+            <div class="alert alert-{{category}}">
+                <!--data-dismiss, aria-label i aria-hidden odpowiadaja za funkcjonalnosc przycisku -->
+                <button type="button" class="m1-2 mb-1 close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                {{message}}
+                
+            </div>
+            {%endfor%}
+        {% endif%}
+    {%endwith%}
+
+
+{%block content%}
+
+{%endblock%}

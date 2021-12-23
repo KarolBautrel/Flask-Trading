@@ -1,0 +1,42 @@
+<style>
+    .modal-content{
+
+      background-color: white;
+
+    }
+  </style>
+ 
+  <!-- SELL, Modal-MoreInfo-{{item.id}} wskazuje na id przedmiotu-->
+
+  <div class="modal fade" id="Modal-SellConfirm-{{item.id}}" tabindex="-1"  aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">
+            <!-- nazwa przedmiotu(kolumna)-->
+            {{item.name}}
+          </h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true"></span>
+          </button>
+        </div>
+        <div class="modal-body">
+         
+        </div>
+        <div class="modal-footer">
+          <form method="POST">
+            {{ sold_form.hidden_tag() }} <!--Dodanie sekretnego tagu jak do kazdego POST-->
+             <!--kolumna/zmienna description -->
+         <h4 class="text-center"> Are you sure you want to sell {{item.name}} for {{item.price}}$ ? </h4>
+         <br>
+         <!-- wartosc purchase_form, hidden to ukryta wiadomosc, ktora bedziemy uzywac w backendzie-->
+         <input id="sold_item" name="sold_item" type="hidden" value="{{item.name}}">
+         <!--Przycisk -->
+         {{sold_form.submit(class="btn btn-lg btn-block btn-success")}}
+          </form>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          
+        </div>
+      </div>
+    </div>
+  </div>
