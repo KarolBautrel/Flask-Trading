@@ -6,8 +6,8 @@ from market.forms import RegisterForm, LoginForm, PurchaseItemForm, SellingItemF
 
 google = oauth.register(
     name='google',
-    client_id="378796742278-5r3jjcc9m0hdvh8864l4on1lt49kcgc1.apps.googleusercontent.com",
-    client_secret="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",
+    client_id="xxxx",
+    client_secret="xxxx",
     access_token_url='https://accounts.google.com/o/oauth2/token',
     access_token_params=None,
     authorize_url='https://accounts.google.com/o/oauth2/auth',
@@ -39,7 +39,7 @@ def market_page():
         return redirect(url_for('owned_page'))
        
     if request.method == 'GET':
-        items = Item.query.filter_by(owner=None) # wyswietlenie wszystkich obiektow w naszej bazie danych
+        items = Item.query.filter_by(owner=None) 
         
         return render_template('market.html', items=items, purchase_form=purchase_form)
 
@@ -180,5 +180,10 @@ def change_email_page():
 @app.route('/logout')
 def logout_page():
     logout_user()
+<<<<<<< HEAD
     flash(f'You are logged out', category='info')
     return redirect(url_for('home_page'))
+=======
+    flash(f'You are logged ou', category='info')
+    return redirect(url_for('home_page'))
+>>>>>>> 464e3851055ee4ec4434ce378bf394d1472c8f6d
