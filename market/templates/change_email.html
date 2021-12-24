@@ -1,0 +1,24 @@
+{%extends "base.html"%}
+
+{%block content%}
+        
+    <body class="text-center"> <!--Wysrodkowanie calego tekstu-->
+        <div class="container">
+        <form method ="POST" class="form-register" style = "color:rgb(54, 53, 53)">
+            {{form.hidden_tag()}}
+    
+            <h1 class="h3 mb-3 font-weight - normal">Change your email</h1>
+            <br>
+        
+            
+            {{form.email.label() }} 
+            {{form.email(class="form-control", placeholder="New email") }}
+
+            {{form.password.label() }} 
+            {{form.password(class="form-control", placeholder="Confirm new email by password") }}
+            
+            <br>
+            {{form.submit(class="btn btn-lg btn-block btn-primary")}} </form>
+        </div>
+
+        {%endblock%}

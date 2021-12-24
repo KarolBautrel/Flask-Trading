@@ -2,7 +2,7 @@ from market import app, db, oauth
 from flask import render_template, redirect, url_for, flash, request, session
 from flask_login import login_user, logout_user, login_required, current_user
 from market.models import Item, User
-from market.forms import RegisterForm, LoginForm, PurchaseItemForm, SellingItemForm
+from market.forms import RegisterForm, LoginForm, PurchaseItemForm, SellingItemForm, ChangePasswordForm, ChangeEmailForm
 
 google = oauth.register(
     name='google',
@@ -36,10 +36,8 @@ def market_page():
                 flash(f'{p_item_object.name} bought successfully', category='success')
             else:
                 flash('Not enough money', category= "danger")
-
         return redirect(url_for('owned_page'))
-      
-                
+       
     if request.method == 'GET':
         items = Item.query.filter_by(owner=None) # wyswietlenie wszystkich obiektow w naszej bazie danych
         
@@ -141,9 +139,46 @@ def owned_page():
         return render_template('owned.html' ,owned_items=owned_items, sold_form=sold_form)
 
 
+@app.route('/panel',methods=['GET', 'POST'])
+@login_required
+def panel_page():
+    
+    return render_template('panel.html')
+
+
+@app.route('/change_password', methods=['GET', 'POST'])
+@login_required
+def change_password_page():
+    form = ChangePasswordForm()
+    if form.validate_on_submit():
+            if current_user.check_password_correction(attempted_password=form.old_password.data):
+                current_user.change_password(form.new_password.data)
+                flash(f'Password has been changed', category= "success")
+                return redirect(url_for('panel_page'))
+            else:
+                flash('Wrong password')
+    return render_template('change_password.html', form=form)
+
+
+
+@app.route('/change_email', methods=['GET', 'POST'])
+@login_required
+def change_email_page():
+    form = ChangeEmailForm()
+    if form.validate_on_submit():
+        if current_user.check_password_correction(attempted_password=form.password.data):
+            current_user.change_email(form.email.data)
+            flash(f'Email has been changed', category= "success")
+            return redirect(url_for('panel_page'))
+        else:
+            flash('Wrong password')
+        
+    return render_template('change_email.html', form=form)
+
+
 
 @app.route('/logout')
 def logout_page():
     logout_user()
-    flash(f'You are logged ou', category='info')
+    flash(f'You are logged out', category='info')
     return redirect(url_for('home_page'))

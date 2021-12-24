@@ -36,8 +36,20 @@ class User(db.Model, UserMixin):
     def can_purchase(self, item_object):
         return self.budget >= item_object.price
 
-    
 
+
+
+
+
+
+
+    def change_password(self, input_password):
+        self.password_hash = bcrypt.generate_password_hash(input_password).decode('utf-8')
+        db.session.commit()
+        
+    def change_email(self, input_email):
+        self.email_address = input_email
+        db.session.commit()
 
 
 

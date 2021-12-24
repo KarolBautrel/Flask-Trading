@@ -6,11 +6,15 @@
 {% include 'includes/buying_modals.html' %}
 <div class="container">    
     <div class="row">
-      <div class="col">
-        <div class="panel panel-primary">
-          <div class="panel-heading">{{item.name}}  <button class='btn btn-outline btn-success' data-toggle='modal' data-target='#Modal-PurchaseConfirm-{{item.id}}'>Purchase!</button> </div>
-          <div class="panel-body">{{item.price}}</div>
-          <div class="panel-footer">{{item.description}} </div>
+      
+        <div class="panel panel-primary" style = "text-align: center">
+          <div class="panel-heading">{{item.name}} <p>{{item.price}}$</p>
+            <button class='btn btn-outline btn-success' data-toggle='modal' data-target='#Modal-PurchaseConfirm-{{item.id}}'>Purchase!
+          </button> 
+       
+        </div>
+          <div class="panel-body" style = "text-align: center">{{item.description}}</div>
+          <div class="panel-body"><img src={{item.picture}} class="center" style="width:20%" alt="Image"></div>
           
         </div>
       </div>

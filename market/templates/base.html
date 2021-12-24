@@ -54,10 +54,11 @@
       
         {%if current_user.is_authenticated %}
         <ul class="nav navbar-nav navbar-right">
-          <li><a class = 'nav-link' ></span> Hello, {{current_user.username}}</a></li>
-          <li><a class = 'nav-link'><span class="glyphicon glyphicon-eur"></span> {{current_user.budget}}</a></li>
+          <li><a class = 'nav-link'  ></span> Hello, {{current_user.username}}</a></li>
+          <li><a class = 'nav-link'><span class="glyphicon glyphicon-eur"></span> {{current_user.budget}} </a></li>
+          <li><a class = 'nav-link' href="{{url_for('panel_page')}}"><span class="glyphicon glyphicon-user"></span> Your Panel</a></li>
           <li><a class = 'nav-link' href="{{url_for('logout_page')}}"><span class="glyphicon glyphicon-remove"></span> Logout</a></li>
-          <li><a class = 'nav-link' href="#"><span class="glyphicon glyphicon-user"></span> Your Panel Button</a></li>
+          
         </ul>
       </div>
   </nav>
@@ -65,15 +66,17 @@
       {%else%}
 
      
-      <ul class="nav navbar-nav navbar-right">
+      <ul class="nav navbar-nav navbar-right"></ul>
         <li><a class = 'nav-link' href="{{url_for('login_gmail')}}"><span class="glyphicon glyphicon-envelope"></span> Login with Google Account</a></li>
         <li><a class = 'nav-link' href="{{url_for('login_page')}}"><span class="glyphicon glyphicon-user"></span> Login</a></li>
         <li><a class = 'nav-link' href="{{url_for('register_page')}}"><span class="glyphicon glyphicon-user"></span> Register</a></li>
       </ul>
+      {%endif%}
     </div>
+
   </div>
 </nav>
-    {%endif%}
+ 
 
 
     

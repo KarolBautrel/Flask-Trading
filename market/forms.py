@@ -40,3 +40,15 @@ class PurchaseItemForm(FlaskForm):
 
 class SellingItemForm(FlaskForm):
     submit = SubmitField(label="Sell")
+
+
+class ChangePasswordForm(FlaskForm):
+    old_password = PasswordField(label="Old Password", validators=[DataRequired()])
+    new_password = PasswordField(label="New Password", validators=[Length(min=6),DataRequired()])
+    new_password2 = PasswordField(label="Confirm new password", validators=[EqualTo('new_password'),DataRequired()])
+    submit = SubmitField(label="Change Password")
+
+class ChangeEmailForm(FlaskForm):
+    email = StringField(label="Email", validators=[Email(),DataRequired()])
+    password = PasswordField(label="Password", validators=[Length(min=6),DataRequired()])
+    submit = SubmitField(label="Change Email")
