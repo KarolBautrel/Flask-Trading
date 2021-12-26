@@ -1,8 +1,9 @@
-from market import app, db, oauth
+from market import app, db, oauth, mail
 from flask import render_template, redirect, url_for, flash, request, session
 from flask_login import login_user, logout_user, login_required, current_user
 from market.models import Item, User
 from market.forms import RegisterForm, LoginForm, PurchaseItemForm, SellingItemForm, ChangePasswordForm, ChangeEmailForm
+from flask_mail import Mail, Message
 
 google = oauth.register(
     name='google',
@@ -53,9 +54,14 @@ def register_page():
     if form.validate_on_submit():
         user_to_create = User(username = form.username.data,
                               email_address = form.email.data,
-                                password = form.password.data)
+                                password = form.password.data)             
         db.session.add(user_to_create)
         db.session.commit()
+        login_user(user_to_create)
+        current_user.registration_mail()   
+
+        flash(f"Your account is registered", category = 'success')
+
         return redirect(url_for('market_page'))
 
     if form.errors != {}:
@@ -168,7 +174,7 @@ def change_email_page():
     if form.validate_on_submit():
         if current_user.check_password_correction(attempted_password=form.password.data):
             current_user.change_email(form.email.data)
-            flash(f'Email has been changed', category= "success")
+            flash(f'Email has been changed to {current_user.email_address}', category= "success")
             return redirect(url_for('panel_page'))
         else:
             flash('Wrong password')
@@ -180,10 +186,5 @@ def change_email_page():
 @app.route('/logout')
 def logout_page():
     logout_user()
-<<<<<<< HEAD
     flash(f'You are logged out', category='info')
     return redirect(url_for('home_page'))
-=======
-    flash(f'You are logged ou', category='info')
-    return redirect(url_for('home_page'))
->>>>>>> 464e3851055ee4ec4434ce378bf394d1472c8f6d

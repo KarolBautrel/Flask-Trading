@@ -1,6 +1,6 @@
-from market import db, bcrypt, login_manager
+from market import db, bcrypt, login_manager, mail
 from flask_login import UserMixin
-
+from flask_mail import Message
 
 @login_manager.user_loader
 def load_user(user_id):
@@ -38,7 +38,10 @@ class User(db.Model, UserMixin):
 
 
 
-
+    def registration_mail(self):
+        msg = Message("Account creation", sender = 'testbautrel111@gmail.com', recipients = [self.email_address])
+        msg.body = (f'Your account has been created. Your name is {self.username}, have a good time on our store')
+        mail.send(msg)  
 
 
 

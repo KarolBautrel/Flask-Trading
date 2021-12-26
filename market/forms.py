@@ -10,7 +10,7 @@ class RegisterForm(FlaskForm):
     username = StringField(label="Username", validators=[Length(min=3, max=20), DataRequired()])
     email = StringField(label="Email", validators=[Email(),DataRequired()])
     password = PasswordField(label="Password", validators=[Length(min=6),DataRequired()])
-    password2 = PasswordField(label="Confirm Password", validators=[EqualTo('password1'),DataRequired()])
+    password2 = PasswordField(label="Confirm Password", validators=[EqualTo('password'),DataRequired()])
     submit = SubmitField(label="Create Account")
 
 
@@ -37,7 +37,6 @@ class PurchaseItemForm(FlaskForm):
 
 class SellingItemForm(FlaskForm):
     submit = SubmitField(label="Sell")
-<<<<<<< HEAD
 
 
 class ChangePasswordForm(FlaskForm):
@@ -47,8 +46,6 @@ class ChangePasswordForm(FlaskForm):
     submit = SubmitField(label="Change Password")
 
 class ChangeEmailForm(FlaskForm):
-    email = StringField(label="Email", validators=[Email(),DataRequired()])
-    password = PasswordField(label="Password", validators=[Length(min=6),DataRequired()])
+    email = StringField(label="New email", validators=[Email(),DataRequired()])
+    password = PasswordField(label="Confirm by password", validators=[Length(min=6),DataRequired()])
     submit = SubmitField(label="Change Email")
-=======
->>>>>>> 464e3851055ee4ec4434ce378bf394d1472c8f6d

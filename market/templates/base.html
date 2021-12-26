@@ -50,9 +50,9 @@
       <ul class="nav navbar-nav">
         <li><a class = 'nav-link' href="{{url_for('home_page')}}"><span class ="glyphicon glyphicon-home"></span> Home</a></li>
         <li><a class = 'nav-link' href="{{url_for('market_page')}}"><span class ="glyphicon glyphicon-shopping-cart"></span>Products</a></li>
-        <li><a class = 'nav-link' href="{{url_for('owned_page')}}">Your Items</a></li> 
       
         {%if current_user.is_authenticated %}
+        
         <ul class="nav navbar-nav navbar-right">
           <li><a class = 'nav-link'  ></span> Hello, {{current_user.username}}</a></li>
           <li><a class = 'nav-link'><span class="glyphicon glyphicon-eur"></span> {{current_user.budget}} </a></li>
@@ -60,11 +60,12 @@
           <li><a class = 'nav-link' href="{{url_for('logout_page')}}"><span class="glyphicon glyphicon-remove"></span> Logout</a></li>
           
         </ul>
+        
       </div>
   </nav>
     </ul>
       {%else%}
-
+    
      
       <ul class="nav navbar-nav navbar-right"></ul>
         <li><a class = 'nav-link' href="{{url_for('login_gmail')}}"><span class="glyphicon glyphicon-envelope"></span> Login with Google Account</a></li>
