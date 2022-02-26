@@ -1,5 +1,5 @@
-# Djanphone - ecommerce app
- Djanphone app created with Django and Bootstrap
+# Flask - ecommerce app
+ Shop-trading app created with Flask and Bootstrap
 
 ## Table of content
 
@@ -9,7 +9,7 @@
   * [Features](#features)
 
 ## General info
-This project is imitation of phone online shop with full CRUD actions, including writing tickets, making checkouts and paypal payments.
+This is just simple app imitating trading websites like allegro, where user can sell and buy some products
 App is very simple because I just wanted to show that I can use Flask.
 
 ## Technologies
